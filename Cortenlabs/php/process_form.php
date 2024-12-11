@@ -6,17 +6,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = htmlspecialchars($_POST['name']);
     $email = htmlspecialchars($_POST['email']);
     $message = htmlspecialchars($_POST['message']);
+    $honeypot = $_POST['honeypot'];
+    $captcha = $_POST['captcha'];
 
-    // Verify reCAPTCHA
-    $recaptcha_response = $_POST['g-recaptcha-response'];
-    $recaptcha_url = "https://www.google.com/recaptcha/api/siteverify";
-    $recaptcha_secret = $config['recaptcha_secret'];
+    // Controleer honeypot
+    if (!empty($honeypot)) {
+        die("Spam gedetecteerd. Bericht niet verzonden.");
+    }
 
-    $response = file_get_contents($recaptcha_url . "?secret=" . $recaptcha_secret . "&response=" . $recaptcha_response);
-    $response_keys = json_decode($response, true);
-
-    if (!$response_keys["success"]) {
-        die("Captcha verificatie mislukt. Probeer opnieuw.");
+    // Controleer CAPTCHA
+    if ($captcha !== '7') { // Verwacht resultaat van "4 + 3"
+        die("Verkeerde CAPTCHA-oplossing. Probeer opnieuw.");
     }
 
     // Email verzenden

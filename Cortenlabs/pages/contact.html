@@ -2,15 +2,23 @@
 <form action="php/process_form.php" method="POST">
     <label for="name">Naam:</label>
     <input type="text" id="name" name="name" required>
-    
+
     <label for="email">E-mail:</label>
     <input type="email" id="email" name="email" required>
-    
+
     <label for="message">Bericht:</label>
     <textarea id="message" name="message" rows="5" required></textarea>
-    
-    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-    
+
+    <!-- Honeypot -->
+    <div style="display:none;">
+        <label for="honeypot">Laat dit veld leeg:</label>
+        <input type="text" id="honeypot" name="honeypot">
+    </div>
+
+    <!-- Eenvoudige CAPTCHA -->
+    <label for="captcha">Wat is 4 + 3?</label>
+    <input type="text" id="captcha" name="captcha" required>
+
     <button type="submit">Verstuur</button>
 </form>
 
