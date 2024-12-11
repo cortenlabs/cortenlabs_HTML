@@ -30,4 +30,33 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
         .catch(error => console.error('Error loading menu:', error));
+
+const form = document.getElementById("contact-form");
+    const feedback = document.getElementById("form-feedback");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    feedback.textContent = data.message;
+                    feedback.className = "form-feedback"; // Groen bij succes
+                    form.reset(); // Velden leegmaken
+                } else {
+                    feedback.textContent = data.message;
+                    feedback.className = "form-feedback error"; // Rood bij fout
+                }
+            })
+            .catch(error => {
+                feedback.textContent = "Er is een onverwachte fout opgetreden.";
+                feedback.className = "form-feedback error";
+            });
+    });
 });

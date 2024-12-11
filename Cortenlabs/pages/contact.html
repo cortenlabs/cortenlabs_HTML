@@ -1,26 +1,41 @@
-<h2>Neem contact op</h2>
-<form action="php/process_form.php" method="POST">
-    <label for="name">Naam:</label>
-    <input type="text" id="name" name="name" required>
+<section class="contact-form">
+    <h2>Neem contact op</h2>
+    <form action="php/process_form.php" method="POST">
+        <!-- Naam -->
+        <div class="form-group">
+            <label for="name">Naam:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
 
-    <label for="email">E-mail:</label>
-    <input type="email" id="email" name="email" required>
+        <!-- E-mail -->
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
 
-    <label for="message">Bericht:</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+        <!-- Bericht -->
+        <div class="form-group full-width">
+            <label for="message">Bericht:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
 
-    <!-- Honeypot -->
-    <div style="display:none;">
-        <label for="honeypot">Laat dit veld leeg:</label>
-        <input type="text" id="honeypot" name="honeypot">
-    </div>
+        <!-- Honeypot -->
+        <div class="form-group" style="display:none;">
+            <label for="berichttype">Berichttype:</label>
+            <input type="text" id="berichttype" name="berichttype">
+        </div>
 
-    <!-- Eenvoudige CAPTCHA -->
-    <label for="captcha">Wat is 4 + 3?</label>
-    <input type="text" id="captcha" name="captcha" required>
+        <!-- CAPTCHA -->
+        <div class="form-group full-width">
+            <label for="captcha">Wat is de datum van de dag voor gisteren? (dd-mm-jjjj):</label>
+            <input type="text" id="captcha" name="captcha" placeholder="dd-mm-jjjj" required>
+        </div>
 
-    <button type="submit">Verstuur</button>
-</form>
+        <!-- Verzenden -->
+        <button type="submit">Verstuur</button>
+    </form>
+    <div id="form-feedback" class="form-feedback"></div> <!-- Feedback plek -->
+</section>
 
 <h2>Algemene gegevens</h2>
 <p><strong>Naam:</strong> Cortenlabs</p>
