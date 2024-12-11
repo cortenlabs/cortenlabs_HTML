@@ -111,3 +111,37 @@ footer {
     text-align: center;
     padding: 10px 0;
 }
+.contact-form, .company-info {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.contact-form input, .contact-form textarea {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}

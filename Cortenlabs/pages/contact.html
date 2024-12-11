@@ -1,0 +1,20 @@
+<h2>Neem contact op</h2>
+<form action="php/process_form.php" method="POST">
+    <label for="name">Naam:</label>
+    <input type="text" id="name" name="name" required>
+    
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="message">Bericht:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+    
+    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+    
+    <button type="submit">Verstuur</button>
+</form>
+
+<h2>Algemene gegevens</h2>
+<p><strong>Naam:</strong> Cortenlabs</p>
+<p><strong>KVK-nummer:</strong> 12345678</p>
+<p><strong>BTW-nummer:</strong> NL123456789B01</p>

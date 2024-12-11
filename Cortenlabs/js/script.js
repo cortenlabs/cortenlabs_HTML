@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Dynamisch menu laden
     const sidebar = document.querySelector('.sidebar');
-    fetch('menu.html')
+    fetch('partials/menu.html')
         .then(response => response.text())
         .then(data => {
             sidebar.innerHTML = data;
