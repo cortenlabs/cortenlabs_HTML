@@ -1,10 +1,22 @@
 /* Algemene stijlen */
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
 body {
     font-family: Verdana, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background: linear-gradient(to bottom, #f7f8fa, #e1e4e8);
+    height: 100vh; /* Zorg dat het volledige venster wordt benut */
+    display: flex;
+    flex-direction: column; /* Zorgt voor header, content, footer structuur */
+    background: linear-gradient(to bottom, #f7f8fa, #d1d4d8); /* Verloop van kleuren */
+    background-attachment: fixed; /* Zorgt dat het verloop stabiel blijft bij scrollen */
 }
 
 /* Titelbalk */
@@ -27,27 +39,43 @@ header {
 }
 
 .title-bar .logo {
-    width: 20%; /* Instelbaar percentage van de titelbalkbreedte */
+    width: 12%; /* Instelbaar percentage van de titelbalkbreedte */
+	max-width: 180px; /* Maximale breedte */
     height: auto; /* Houd de proporties gelijk */
     margin-right: 2%; /* Ruimte tussen logo en tekst */
 }
 
 .title-bar h1 {
-    font-size: 10vw; /* Schaalt mee met de breedte van het scherm (hoogte = percentage vd breedte van het scherm */
+    /* font-size: 8vw; Schaalt mee met de breedte van het scherm (hoogte = percentage vd breedte van het scherm */
+	font-size: clamp(16px, 8vw, 100px); /* Minimale, schaalbare en maximale grootte */
     color: black; /* Zwarte tekst */
     margin: 0;
+	line-height: 1.2; /* Zorgt ervoor dat de tekst niet te veel ruimte inneemt */
 }
-
-/* Content-secties */
-.content {
-    display: flex;
-    height: 80%;
-}
+/* Sidebar (menu) en main-content */
 .sidebar {
-    width: 30%;
-    background: #f7f7f7;
+    width: clamp(150px, 25%, 300px); /* Percentage van de breedte */
+    /*min-width: 150px; /* Minimale breedte */
+	/*max-width: 200px;
+    overflow-y: auto; /* Scrollbaar als de inhoud te groot wordt */
+    background: #d0c040;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+    width: 70%; /* Percentage van de breedte */
+    min-width: 300px; /* Minimale breedte */
+    overflow-y: auto; /* Scrollbaar als de inhoud te groot wordt */
+    padding: 20px;
+    box-sizing: border-box;
+}
+/* Content-sectie vult het resterende venster */
+.content {
+    flex: 1; /* Vul de resterende ruimte tussen header en footer */
+    display: flex;
+    min-height: 400px; /* Minimale hoogte, zodat scrollbars verschijnen als het venster te klein wordt */
+    height: 80%;
 }
 .sidebar h2 {
     font-size: 1.2rem;
