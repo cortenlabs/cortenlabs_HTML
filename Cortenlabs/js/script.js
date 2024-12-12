@@ -24,39 +24,49 @@ document.addEventListener("DOMContentLoaded", () => {
                             // Markeer actieve link
                             links.forEach(l => l.classList.remove('active'));
                             e.target.classList.add('active');
+
+                            // Controleer of contact-form is geladen en voeg eventlistener toe
+                            const form = document.getElementById("contact-form");
+                            if (form) {
+                                console.log("Contactformulier geladen:", form);
+
+                                const feedback = document.getElementById("form-feedback");
+
+                                form.addEventListener("submit", (e) => {
+                                    e.preventDefault();
+                                    console.log("Submit onderschept!");
+
+                                    const formData = new FormData(form);
+
+                                    fetch(form.action, {
+                                        method: "POST",
+                                        body: formData,
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            console.log("Server response:", data);
+                                            if (data.status === "success") {
+                                                feedback.textContent = data.message;
+                                                feedback.className = "form-feedback";
+                                                form.reset();
+                                            } else {
+                                                feedback.textContent = data.message;
+                                                feedback.className = "form-feedback error";
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error("Fetch error:", error);
+                                            feedback.textContent = "Er is een onverwachte fout opgetreden.";
+                                            feedback.className = "form-feedback error";
+                                        });
+                                });
+                            } else {
+                                console.warn("Contactformulier niet aanwezig op deze pagina.");
+                            }
                         })
                         .catch(error => console.error('Error loading content:', error));
                 });
             });
         })
         .catch(error => console.error('Error loading menu:', error));
-
-const form = document.getElementById("contact-form");
-    const feedback = document.getElementById("form-feedback");
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: "POST",
-            body: formData,
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    feedback.textContent = data.message;
-                    feedback.className = "form-feedback"; // Groen bij succes
-                    form.reset(); // Velden leegmaken
-                } else {
-                    feedback.textContent = data.message;
-                    feedback.className = "form-feedback error"; // Rood bij fout
-                }
-            })
-            .catch(error => {
-                feedback.textContent = "Er is een onverwachte fout opgetreden.";
-                feedback.className = "form-feedback error";
-            });
-    });
 });
